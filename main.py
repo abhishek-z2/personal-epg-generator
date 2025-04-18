@@ -1,4 +1,4 @@
-from epg.fetch_epg import fetch_pluto_homepage
+from epg.fetch_epg import fetch_epg
 from utils.tor_utils import test_tor_connection
 
 if __name__ == "__main__":
@@ -6,4 +6,4 @@ if __name__ == "__main__":
     test_tor_connection()
 
     print("\n🌐 Fetching Pluto.tv homepage through Tor...")
-    fetch_pluto_homepage()
+    fetch_epg()
