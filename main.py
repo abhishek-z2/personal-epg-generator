@@ -6,8 +6,10 @@ if __name__ == "__main__":
     print("🔍 Checking Tor connection...")
     test_tor_connection()
 
-    print("\n🌐 Fetching Pluto.tv homepage through Tor...")
-    fetch_epg()
+    # print("\n🌐 Fetching Pluto.tv homepage through Tor...")
+    # fetch_epg()
     data = fetch_epg()
+    # print(data[:1])
     # print(f"type of response: {type(data)}")
     epg_to_xmltv(data)
+    # epg_to_xmltv_ist(data)

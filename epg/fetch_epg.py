@@ -63,19 +63,19 @@ def fetch_epg():
         print(f"✅ Fetched EPG data for {len(data.get('data',[]))} channels.\n")
 
         # Show a brief summary
-        for channel in data.get("data",[])[:3]:  # show only 3 for brevity
-            name = channel.get("name", "Unknown Channel")
-            shows = channel.get("timelines", [])
-            print(f"📺 {name} ({len(shows)} shows):")
-            for show in shows[:2]:
-                title = show.get("title", "Untitled")
-                start = show.get("start")
-                end = show.get("stop")
-                description = show.get("episode").get("description", "No description available")
-                genre = show.get("genre", "Unknown genre")
-                print(f"  - {title} ({start} to {end}) - {description} - {genre}")
+        # for channel in data.get("data",[])[:3]:  # show only 3 for brevity
+        #     name = channel.get("name", "Unknown Channel")
+        #     shows = channel.get("timelines", [])
+        #     print(f"📺 {name} ({len(shows)} shows):")
+        #     for show in shows[:2]:
+        #         title = show.get("title", "Untitled")
+        #         start = show.get("start")
+        #         end = show.get("stop")
+        #         description = show.get("episode").get("description", "No description available")
+        #         genre = show.get("genre", "Unknown genre")
+        #         print(f"  - {title} ({start} to {end}) - {description} - {genre}")
 
-            print()
+        #     print()
 
         return(data.get("data",[]))
     except Exception as e:
