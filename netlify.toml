@@ -1,0 +1,9 @@
+[[headers]]
+  for = "/pluto_epg.xml"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/pluto_epg_ist.xml"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
