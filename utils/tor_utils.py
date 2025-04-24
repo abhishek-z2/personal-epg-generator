@@ -3,8 +3,8 @@ import requests
 def get_tor_session():
     session = requests.Session()
     session.proxies = {
-        'http': 'socks5h://127.0.0.1:9051',
-        'https': 'socks5h://127.0.0.1:9051'
+        'http': 'socks5h://127.0.0.1:9050',
+        'https': 'socks5h://127.0.0.1:9050'
     }
     ipinfo = session.get("http://ip-api.com/json/").json()
     print(ipinfo)
