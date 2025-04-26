@@ -11,7 +11,7 @@ def fetch_epg(session,token):
     url = "https://service-channels.clusters.pluto.tv/v2/guide/timelines"
     params = {
         "start": start_time,
-        "duration": "360"
+        "duration": "720"
     }
     headers = {
 
