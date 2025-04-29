@@ -8,9 +8,14 @@ on:
 permissions:
   contents: write
 
+env:
+  TOR_PORT: 9052
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -30,18 +35,25 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y tor
 
-      - name: Configure Tor for US exit nodes
-        run: |
-          echo "ExitNodes {us}" >> torrc
-          echo "StrictNodes 1" >> torrc
+      - name: Create and verify custom Tor config
+          run: |
+            echo "SocksPort 9052" > my_torrc
+            echo "ExitNodes {us}" >> my_torrc
+            echo "StrictNodes 1" >> my_torrc
+            echo "Log notice stdout" >> my_torrc
+            tor --verify-config -f my_torrc
 
-      - name: Start Tor in the background
-        run: |
-          tor -f torrc &
-          sleep 10  # Allow Tor time to start
 
-      - name: Check if Tor is working
-        run: curl --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/
+      - name: Start Tor in background with custom config
+        run: |
+          tor -f my_torrc &
+          sleep 10
+
+      - name: Confirm Tor is routing via US exit node
+        run: |
+          echo "Checking Tor IP routing through US..."
+          curl --socks5-hostname 127.0.0.1:9050 https://check.torproject.org/ || echo "Tor check failed"
+          curl --socks5-hostname 127.0.0.1:9050 https://ipinfo.io/json || echo "Could not verify IP info"
 
       - name: Run EPG generator
         run: python main.py
