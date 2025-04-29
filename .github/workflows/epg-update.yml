@@ -36,12 +36,12 @@ jobs:
           sudo apt-get install -y tor
 
       - name: Create and verify custom Tor config
-          run: |
-            echo "SocksPort 9052" > my_torrc
-            echo "ExitNodes {us}" >> my_torrc
-            echo "StrictNodes 1" >> my_torrc
-            echo "Log notice stdout" >> my_torrc
-            tor --verify-config -f my_torrc
+        run: |
+          echo "SocksPort 9052" > my_torrc
+          echo "ExitNodes {us}" >> my_torrc
+          echo "StrictNodes 1" >> my_torrc
+          echo "Log notice stdout" >> my_torrc
+          tor --verify-config -f my_torrc
 
 
       - name: Start Tor in background with custom config
